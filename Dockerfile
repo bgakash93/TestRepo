@@ -1,19 +1,13 @@
-# Fetching the latest node image on alpine linux
-FROM node:alpine AS development
+FROM node:18-alpine
 
-# Declaring env
-ENV NODE_ENV development
+WORKDIR /react-docker-example/
 
-# Setting up the work directory
-WORKDIR /react-app
+COPY public/ /react-docker-example/public
 
-# Installing dependencies
-COPY ./ ./
+COPY src/ /react-docker-example/src
+
+COPY package.json /react-docker-example/
 
 RUN npm install
 
-# Copying all the files in our project
-COPY . .
-
-# Starting our application
-CMD ["npm","start"]
+CMD ["npm", "start"]
