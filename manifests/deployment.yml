@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: testrepo 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testrepo
+  template:
+    metadata:
+      labels:
+        app: testrepo 
+    spec:
+      containers:
+        - name: testrepo 
+          image: primaryregistry01.azurecr.io/testrepo
+          ports:
+          - containerPort: 80
